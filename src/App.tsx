@@ -1,10 +1,10 @@
-import Desc from "./components/desc";
+import MainTable from "./components/MainTable";
 
 const App = () => {
   return (
     <div className="App">
       <h1>Training Desc:</h1>
-      <Desc></Desc>
+      <MainTable></MainTable>
     </div>
   );
 };
