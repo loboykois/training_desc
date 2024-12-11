@@ -7,4 +7,5 @@ export interface Exercise {
 
 export interface TableRowProps {
   exercises: Exercise[];
+  onDeleteRow: (id: string) => void;
 }

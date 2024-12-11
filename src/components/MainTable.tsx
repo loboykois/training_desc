@@ -1,13 +1,16 @@
+import { Exercise } from "./TableRow/interface";
 import TableRow from "./TableRow/TableRow";
-import { v4 as uuid4 } from "uuid";
 
-const exercises = [
-  { exerciseName: "Biceps", setsAmount: "4", repetitionAmount: "12", id: uuid4() },
-  { exerciseName: "Chest", setsAmount: "4", repetitionAmount: "12", id: uuid4() },
-  { exerciseName: "Back", setsAmount: "4", repetitionAmount: "12", id: uuid4() },
-];
+interface MainTableProps {
+  exercises: Exercise[];
+  setExercises: React.Dispatch<React.SetStateAction<Exercise[]>>;
+}
 
-const MainTable: React.FC = () => {
+const MainTable: React.FC<MainTableProps> = ({ exercises, setExercises }) => {
+  const handleDeleteRow = (id: string) => {
+    setExercises((prevExercises) => prevExercises.filter((exercise) => exercise.id !== id));
+  };
+
   return (
     <table className="mainTable">
       <thead className="tableHeader">
@@ -18,7 +21,7 @@ const MainTable: React.FC = () => {
         </tr>
       </thead>
       <tbody className="tableBody">
-        <TableRow exercises={exercises}></TableRow>
+        <TableRow exercises={exercises} onDeleteRow={handleDeleteRow}></TableRow>
       </tbody>
     </table>
   );
