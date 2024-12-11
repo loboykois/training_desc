@@ -1,35 +1,25 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React, { useState } from "react";
+import MainTable from ".//components/MainTable";
+import { Exercise } from "./components/TableRow/interface";
+import { v4 as uuid4 } from "uuid";
 
-function App() {
-  const [count, setCount] = useState(0)
+const initialExercises: Exercise[] = [
+  { exerciseName: "Biceps", setsAmount: "4", repetitionAmount: "12", id: uuid4() },
+  { exerciseName: "Chest", setsAmount: "4", repetitionAmount: "12", id: uuid4() },
+  { exerciseName: "Back", setsAmount: "4", repetitionAmount: "12", id: uuid4() },
+  { exerciseName: "Legs", setsAmount: "4", repetitionAmount: "12", id: uuid4() },
+  { exerciseName: "Triceps", setsAmount: "4", repetitionAmount: "12", id: uuid4() },
+  { exerciseName: "ABS", setsAmount: "4", repetitionAmount: "12", id: uuid4() },
+];
+
+const App: React.FC = () => {
+  const [exercises, setExercises] = useState<Exercise[]>(initialExercises);
 
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <MainTable exercises={exercises} setExercises={setExercises} />
     </>
-  )
-}
+  );
+};
 
-export default App
+export default App;
